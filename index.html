@@ -1,33 +1,256 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ForgeWorks Studio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ForgeWorks Studio — AI-Enhanced Writing That Sells</title>
+  <meta name="description" content="ForgeWorks Studio delivers fast, flawless, AI‑enhanced content: resumes, SEO blogs, and product descriptions that convert." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
-    header { display: flex; align-items: center; padding: 20px; background: #111; color: #fff; }
-    header img { height: 60px; margin-right: 15px; }
-    h1 { margin: 0; font-size: 24px; }
-    .container { padding: 40px; text-align: center; }
-    .btn { background: #ff6600; color: #fff; padding: 15px 25px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; text-decoration: none; }
-    .btn:hover { background: #e05500; }
-    footer { text-align: center; padding: 20px; background: #222; color: #aaa; }
+    :root{
+      --bg: #0f1115;
+      --panel: #151923;
+      --muted: #9aa4b2;
+      --text: #e6eaf2;
+      --accent: #ff7a1a; /* forge flame */
+      --accent-2:#00d0b6; /* teal highlight */
+      --ring: rgba(255, 122, 26, 0.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(255,122,26,.08), transparent 60%),
+                  radial-gradient(900px 500px at 10% -20%, rgba(0,208,182,.10), transparent 50%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
+    .logo{width:36px; height:36px}
+    .brand h1{font-size:18px; margin:0; letter-spacing:.4px}
+    .tag{opacity:.8; font-size:12px}
+    .btn{appearance:none; border:none; cursor:pointer; background:linear-gradient(135deg, var(--accent), #ff9b4a);
+         color:#111; font-weight:700; padding:12px 18px; border-radius:14px; box-shadow:0 10px 20px var(--ring);
+         transition:transform .12s ease, box-shadow .12s ease; text-decoration:none; display:inline-flex; align-items:center; gap:10px}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 14px 28px var(--ring)}
+    .btn.secondary{background:#1d2330; color:var(--text); box-shadow:0 0 0 1px #2b3346 inset}
+    .btn.secondary:hover{box-shadow:0 0 0 1px #3a4560 inset}
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; padding:36px 0}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)); border:1px solid #22293a; border-radius:18px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .grid{display:grid; gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3, 1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2, 1fr)}
+    .muted{color:var(--muted)}
+    h2{font-size:28px; margin:0 0 6px}
+    h3{font-size:18px; margin:0 0 6px}
+    p{margin:0 0 10px}
+    ul{margin:8px 0 0 18px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:#171c28; border:1px solid #2a3246; font-size:12px}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; border-top:1px solid #22293a; margin-top:28px}
+    .input{width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2b3346; background:#111521; color:var(--text)}
+    .input:focus{outline:none; border-color:#3b4761; box-shadow:0 0 0 3px rgba(0,208,182,0.18)}
+    .note{font-size:12px; color:var(--muted)}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+    .shadow-sm{box-shadow:0 8px 18px rgba(0,0,0,.25)}
+    .center{text-align:center}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr}
+      .grid.cols-2{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="ForgeWorks Studio Logo">
-    <h1>ForgeWorks Studio</h1>
+  <header class="container">
+    <nav class="nav">
+      <a class="brand" href="#top">
+        <!-- Inline SVG logo (forge + flame) -->
+        <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="ForgeWorks logo" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff7a1a"/>
+              <stop offset="100%" stop-color="#ffb15c"/>
+            </linearGradient>
+          </defs>
+          <path d="M8 52h48v4H8z" fill="#2a3246"/>
+          <path d="M18 40h28v12H18z" fill="#1d2330" stroke="#2a3246"/>
+          <path d="M32 10c6 8 2 12 0 16-2 4 2 6 6 6-3 3-7 4-10 2-5-3-6-9-3-14 2-4 4-6 7-10z" fill="url(#g1)"/>
+        </svg>
+        <div>
+          <h1>ForgeWorks Studio</h1>
+          <div class="tag">AI‑enhanced writing that sells</div>
+        </div>
+      </a>
+      <div class="cta-row">
+        <a class="btn secondary" href="#services">Services</a>
+        <a class="btn" href="#get-started">Get Started</a>
+      </div>
+    </nav>
   </header>
-  <div class="container">
-    <h2>Custom Digital Creations</h2>
-    <p>Professional, sleek, and built to impress. Order your custom work today!</p>
-    <a class="btn" href="https://www.fiverr.com/forgeworksprostudio" target="_blank">Order on Fiverr</a>
-  </div>
-  <footer>
-    <p>&copy; 2025 ForgeWorks Studio. All rights reserved.</p>
-  </footer>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div>
+        <div class="chip shadow-sm">⚡ Fast turnaround &nbsp;•&nbsp; 🎯 Conversion‑focused &nbsp;•&nbsp; 🤖 AI‑assisted + human polish</div>
+        <h2 style="font-size:40px; line-height:1.1; margin:16px 0 10px;">Turn words into revenue.</h2>
+        <p class="muted" style="font-size:18px; max-width:660px">Resumes that land interviews. SEO blogs that rank. Product descriptions that convert. We deliver clean, on‑brand copy — fast.</p>
+        <div class="cta-row" style="margin-top:16px">
+          <a class="btn" href="#get-started">Hire ForgeWorks</a>
+          <a class="btn secondary" href="#samples">View Samples</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Services at a glance</h3>
+        <div class="grid cols-3" style="margin-top:10px">
+          <div class="card">
+            <h3>Resume + LinkedIn</h3>
+            <p class="muted">ATS‑optimized resumes and LinkedIn refreshes that pass filters and catch eyes.</p>
+          </div>
+          <div class="card">
+            <h3>SEO Blog Bundles</h3>
+            <p class="muted">Topic research, outlines, and clean drafts built to rank and engage.</p>
+          </div>
+          <div class="card">
+            <h3>Product Copy</h3>
+            <p class="muted">Benefit‑driven descriptions tailored for Amazon, Etsy, and Shopify.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" style="padding:12px 0 8px">
+      <h2>Packages</h2>
+      <p class="muted">Transparent pricing. Clear deliverables. No fluff.</p>
+      <div class="grid cols-3" style="margin-top:14px">
+        <div class="card">
+          <h3>Resume Essentials</h3>
+          <p class="muted">Polished, ATS‑friendly resume.</p>
+          <ul>
+            <li>1× Professional resume</li>
+            <li>Keyword optimization</li>
+            <li>Delivered in DOCX + PDF</li>
+          </ul>
+          <div class="cta-row" style="margin-top:12px">
+            <a class="btn" href="#get-started" data-plan="resume-basic">Get Started</a>
+            <span class="note">from $25</span>
+          </div>
+        </div>
+        <div class="card" style="border-color:#334064; box-shadow:0 12px 30px rgba(0,208,182,.12)">
+          <h3>SEO Blog Bundle</h3>
+          <p class="muted">Engaging posts that rank.</p>
+          <ul>
+            <li>3× or 5× 800‑word posts</li>
+            <li>Headlines + meta description</li>
+            <li>On‑page SEO structure</li>
+          </ul>
+          <div class="cta-row" style="margin-top:12px">
+            <a class="btn" href="#get-started" data-plan="blog-bundle">Get Started</a>
+            <span class="note">from $120</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Product Descriptions</h3>
+          <p class="muted">Copy that converts browsers to buyers.</p>
+          <ul>
+            <li>5 / 15 / 30 descriptions</li>
+            <li>Features → benefits → CTA</li>
+            <li>Platform‑specific formatting</li>
+          </ul>
+          <div class="cta-row" style="margin-top:12px">
+            <a class="btn" href="#get-started" data-plan="product-copy">Get Started</a>
+            <span class="note">from $25</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Samples / Social proof -->
+    <section id="samples" style="padding:18px 0 0">
+      <h2>Samples</h2>
+      <div class="grid cols-2" style="margin-top:14px">
+        <div class="card">
+          <h3>Resume (ATS‑friendly)</h3>
+          <p class="muted">Preview our clean, recruiter‑tested structure.</p>
+          <a class="btn secondary" href="#get-started">Request Sample</a>
+        </div>
+        <div class="card">
+          <h3>SEO Blog (800 words)</h3>
+          <p class="muted">Clear headings, scannable sections, and on‑page SEO baked in.</p>
+          <a class="btn secondary" href="#get-started">Request Sample</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get Started / Lead capture -->
+    <section id="get-started" style="padding:22px 0 0">
+      <h2>Hire ForgeWorks</h2>
+      <p class="muted">Choose a path: instant purchase via marketplace, or message us directly.</p>
+      <div class="grid cols-2" style="margin-top:14px">
+        <div class="card">
+          <h3>Marketplace Checkout</h3>
+          <p class="muted">Prefer a platform? Use our listings.</p>
+          <div class="cta-row" style="margin-top:12px">
+            <a class="btn" href="https://fiverr.com/" target="_blank" rel="noopener" id="link-fiverr">Fiverr</a>
+            <a class="btn secondary" href="https://www.upwork.com/" target="_blank" rel="noopener" id="link-upwork">Upwork</a>
+          </div>
+          <p class="note" style="margin-top:10px">Replace these links with your live gig URLs.</p>
+        </div>
+        <div class="card">
+          <h3>Direct Message</h3>
+          <form id="contact-form">
+            <label class="muted" for="name">Name</label>
+            <input class="input" id="name" name="name" placeholder="Your name" required />
+            <div style="height:10px"></div>
+            <label class="muted" for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" placeholder="you@example.com" required />
+            <div style="height:10px"></div>
+            <label class="muted" for="service">Service</label>
+            <select class="input" id="service" name="service">
+              <option value="Resume Essentials">Resume Essentials</option>
+              <option value="SEO Blog Bundle">SEO Blog Bundle</option>
+              <option value="Product Descriptions">Product Descriptions</option>
+            </select>
+            <div style="height:10px"></div>
+            <label class="muted" for="message">Project details</label>
+            <textarea class="input" id="message" name="message" rows="5" placeholder="Tell us what you need…"></textarea>
+            <div style="height:12px"></div>
+            <button class="btn" type="submit">Send</button>
+            <p class="note" style="margin-top:8px">No spam. We reply within 24 hours.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="foot container">
+      <div class="muted">© <span id="year"></span> ForgeWorks Studio</div>
+      <div class="muted">Built for speed • Privacy‑first</div>
+    </section>
+  </main>
+
+  <script>
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // simple direct-send: opens drafted email with form data (no backend required)
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = encodeURIComponent(form.name.value.trim());
+      const email = encodeURIComponent(form.email.value.trim());
+      const service = encodeURIComponent(form.service.value);
+      const message = encodeURIComponent(form.message.value.trim());
+      const subject = `[ForgeWorks] ${service} — ${name}`;
+      const body = `Name: ${name}%0AEmail: ${email}%0AService: ${service}%0A%0A${message}`;
+      // TODO: replace with your preferred inbox
+      const mailto = `mailto:forgeworks@yourdomain.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    });
+  </script>
 </body>
 </html>
